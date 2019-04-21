@@ -1,13 +1,13 @@
-#Dynamic Community Detection Algorithms
+# Dynamic Community Detection Algorithms
 
 ***
 
-###General
+### General
 
 The project uses the `igraph` library for graph calculations, plotting and static community detection algorithms (mainly infomap).
 Calculations are mainly done on the Enron email data set (usually a yearly partition of it).
 
-###Installation
+### Installation
 
 The project runs on python 3.7 so a Virtual Environment with this python version is recommended. 
 * Use `pip` to install the required libraries from the `wheels` folder on Windows.
@@ -16,7 +16,7 @@ This is because compilation of `igraph`'s core does not work on Windows
 
 ***
 
-###Algorithms
+### Algorithms
 
 This section will be updated with all the dcd algorithms that exist in the project.
 
