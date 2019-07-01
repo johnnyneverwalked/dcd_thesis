@@ -21,18 +21,17 @@ def greene(step_communities, similarity=0.5, death=3):
 
                 for c in step:
                     if helpers.jaccard(d.get_front()[0], c) > similarity:
-                        if d.get_front()[1] < i+2:  # update the front
-                            d.add_community(c, i+2)
+                        if d.get_front()[1] < i+1:  # update the front
+                            d.add_community(c, i+1)
                             d.observed()
                         else:  # create a split community
-                            split = DynamicCommunity(c, i+2, d.get_timeline())
-                            split.define_split(d_idx, i+2)
+                            split = DynamicCommunity(c, i+1, d.get_timeline())
+                            split.define_split(d_idx, i+1)
                             to_add.append(split)
                             print("split")
 
-                if d.get_front()[1] < i+2:  # kill inactive communities
-                    if d.unobserved() > death:
-                        d.kill()
+                if d.get_front()[1] < i+1 and d.unobserved() > death:  # kill inactive communities
+                    d.kill()
 
         # create dynamic communities for unmatched communities
         for c in step:
@@ -42,7 +41,7 @@ def greene(step_communities, similarity=0.5, death=3):
                     matched = True
                     break
             if not matched:
-                to_add.append(DynamicCommunity(c, i+2))
+                to_add.append(DynamicCommunity(c, i+1))
 
         dynamic.extend(to_add)
 

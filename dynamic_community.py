@@ -1,7 +1,7 @@
 
 class DynamicCommunity:
 
-    def __init__(self, community, step=1, timeline={}):
+    def __init__(self, community, step=0, timeline={}):
 
         self._front = None
         self._split = None
