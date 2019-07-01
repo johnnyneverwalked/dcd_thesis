@@ -3,11 +3,11 @@ class DynamicCommunity:
 
     def __init__(self, community, step=0, timeline={}):
 
-        self._front = None
-        self._split = None
-        self._dead = False
-        self._timeline = dict(timeline)
-        self._unobserved = 0
+        self._front = None  # the last step community
+        self._split = None  # a tuple containing the parent community and the step of the split
+        self._dead = False  # whether this dc dissolved (remained unobserved for a set number of steps)
+        self._timeline = dict(timeline)  # a dictionary of all step communities
+        self._unobserved = 0  # for how many steps this dc remained unobserved
         self.add_community(community, step)
 
     def add_community(self, community, step):
