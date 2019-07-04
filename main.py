@@ -1,7 +1,6 @@
-from igraph import *
 from snapshot import Snapshot
 from greene import greene
-
+from takaffoli import takaffoli
 
 snapshots = []
 communities = []
@@ -21,10 +20,21 @@ for i in range(1, 13):
 
     communities.append(clusters)
 
+# greene execution
 
-dynamicSet = greene(communities)
+greeneSet = greene(communities)
 
-
-for d in dynamicSet:
+for d in greeneSet:
     if not d.is_dead():
         print(d.get_timeline())
+
+print(len(greeneSet))
+print("----GREENE COMMUNITIES----")
+
+# takaffoli execution
+
+takaffoliSet = takaffoli(communities)
+for d in takaffoliSet:
+    print(d.get_timeline())
+print(len(takaffoliSet))
+print("----TAKAFFOLI COMMUNITIES----")

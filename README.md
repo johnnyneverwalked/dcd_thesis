@@ -27,3 +27,9 @@ This section will be updated with all the dcd algorithms that exist in the proje
         (e.g. for 2 snapshots: `[[...snapshot1_communities],[...snapshot2_communities]]`)
         * `similarity` (default: `0.5`): A float in [0,1] defining the threshold for the Jaccard coefficient for community matching.
         * `death` (default: `3`): An integer defining after how many steps a community dies after remaining unobserved.
+
+* Takaffoli et al. 2011:
+    * Generates a list of all dynamic communities over a timeline of static graphs (snapshots).
+    * Arguments:
+        * `step_communities`: A list containing all the communities of each `snapshot` in chronological order
+        * `similarity` (default: `0.5`): A float in [0,1] defining the threshold for the similarity threshold for community matching.

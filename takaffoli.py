@@ -13,7 +13,6 @@ def takaffoli(step_communities, similarity=0.5):
         step_communities[t] = [{"community": community, "idx": idx, "dc": -1} for idx, community in enumerate(step)]
 
         if t == 0:
-            pass
             for idx in range(len(step)):
                 dynamic.append(DynamicCommunity(step_communities[t][idx]["community"]))
                 step_communities[t][idx]["dc"] = len(dynamic) - 1
@@ -52,19 +51,21 @@ def takaffoli(step_communities, similarity=0.5):
                     if b.vs[i]["name"][0] == "p":
                         # interested in current step (name starts with 'c')
                         pass
-                    elif j == -1:
-                        # -1 means community is unmatched to any previous communities
+                    else:
                         c_idx = int(b.vs[i]["name"][1:])
                         community = remaining_in_step[c_idx]
-                        not_matched.append(community)
-                    else:
-                        prev_idx = int(b.vs[j]["name"][1:])
-                        prev_comm = step_communities[prev_step][prev_idx]
-                        # check if front is current step and split before adding
-                        c_idx = int(b.vs[i]["name"][1:])
-                        dynamic[prev_comm["dc"]].add_community(remaining_in_step[c_idx]["community"], t)
-                        print(dynamic[prev_comm["dc"]].get_timeline())
-                        return
+                        if j == -1:
+                            # -1 means community is unmatched to any previous communities
+                            not_matched.append(community)
+                        else:
+                            prev_idx = int(b.vs[j]["name"][1:])
+                            prev_comm = step_communities[prev_step][prev_idx]
+                            dc = dynamic[prev_comm["dc"]]
+                            # check if a community was already matched with this dc
+                            if dc.get_front()[1] != t:
+                                dc.add_community(community["community"], t)
+                            else:
+                                not_matched.append(community)
 
                 # if no previous steps remain create dynamic communities for each unmatched community
                 if prev_step == 0:
@@ -78,3 +79,4 @@ def takaffoli(step_communities, similarity=0.5):
                     remaining_in_step = not_matched.copy()
                 else:
                     break
+    return dynamic
