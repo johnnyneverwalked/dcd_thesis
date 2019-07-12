@@ -4,7 +4,7 @@
 
 ### General
 
-The project uses the `igraph` library for graph calculations, plotting and static community detection algorithms (mainly infomap).
+The project uses the `igraph` library for graph calculations, plotting and static community detection algorithms.
 Calculations are mainly done on the Enron email data set (usually a yearly partition of it).
 
 ### Installation
