@@ -22,6 +22,7 @@ class Snapshot:
 
         self._graph.add_vertices(list(vertices))
         self._graph.add_edges(edges)
+        self._graph.vs["cluster_seed"] = None
         if no_zero_degree:
             self._graph.delete_vertices(self._graph.vs(_degree=0))
 

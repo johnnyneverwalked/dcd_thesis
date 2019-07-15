@@ -20,6 +20,8 @@ This is because compilation of `igraph`'s core does not work on Windows
 
 This section will be updated with all the dcd algorithms that exist in the project.
 
+#### Instant-Optimal (Iterative similarity-based)
+
 * Greene et al. 2010:
     * Generates a list of all dynamic communities over a timeline of static graphs (snapshots).
     * Arguments:
@@ -33,3 +35,5 @@ This section will be updated with all the dcd algorithms that exist in the proje
     * Arguments:
         * `step_communities`: A list containing all the communities of each `snapshot` in chronological order
         * `similarity` (default: `0.5`): A float in [0,1] defining the threshold for the similarity threshold for community matching.
+
+#### Temporal Trade-off (Partition update by Global optimization, Informed  CD  by Network Smoothing)
