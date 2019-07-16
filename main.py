@@ -1,6 +1,8 @@
+from algorithms.takaffoli import takaffoli
+from algorithms.greene import greene
+from algorithms.louvain_modified import louvain_modified
 from snapshot import Snapshot
-from greene import greene
-from takaffoli import takaffoli
+
 
 snapshots = []
 communities = []
@@ -20,7 +22,7 @@ for i in range(1, 13):
 
     communities.append(clusters)
 
-# greene execution
+# Greene execution
 
 greeneSet = greene(communities)
 
@@ -31,10 +33,20 @@ for d in greeneSet:
 print(len(greeneSet))
 print("----GREENE COMMUNITIES----")
 
-# takaffoli execution
+# Takaffoli execution
 
 takaffoliSet = takaffoli(communities)
+
 for d in takaffoliSet:
+
     print(d.get_timeline())
 print(len(takaffoliSet))
 print("----TAKAFFOLI COMMUNITIES----")
+
+# Aynaud-Guillaume execution
+
+louvainSet = louvain_modified(snapshots, randomise_constraint=0.02)
+for p in louvainSet:
+    print(p.summary())
+print("----LOUVAIN-MOD COMMUNITIES----")
+
