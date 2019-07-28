@@ -36,11 +36,11 @@ This section will be updated with all the dcd algorithms that exist in the proje
         * `step_communities`: A list containing all the communities of each `snapshot` in chronological order.
         * `similarity` (default: `0.5`): A float in [0,1] defining the threshold for the similarity threshold for community matching.
 
-#### Temporal Trade-off (Partition update by Global optimization, Informed  CD  by Network Smoothing)
+#### Temporal Trade-off (Partition update by Global optimization)
 
 * Aynaud and Guillaume et al. 2010:
     * Generates a list of partitions over a timeline of static graphs (snapshots), using the partition at step t-1 to seed the partition at step t.
     * Arguments:
         * `snapshots`: A list containing all of the `snapshot` graphs in chronological order.
-        * `randomise_constraint` (default: `0.2`): A float in [0,1] indicating the percentage of nodes in partition at step t-1 to move to their own community while seeding partition at step t.
+        * `randomise_constraint` (default: `0.2`): A float in [0,1] indicating the percentage of nodes in partition at step t-1 to be moved to their own community while seeding partition at step t.
         (`0` runs the stable version of the louvain algorithm while `1` runs the standard louvain algorithm)

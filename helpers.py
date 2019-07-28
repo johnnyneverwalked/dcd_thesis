@@ -18,3 +18,14 @@ def find_dynamic_index(community, step, dynamic_communities=[]):
         if jaccard(community, d.get_timeline[step]) == 1:
             return idx
     return -1
+
+
+def intersect_many(lists):
+    if len(lists) <= 1:
+        return set(*lists)
+
+    result = set(lists[0])
+    for item in lists[1:]:
+        result.intersection(item)
+    return result
+
