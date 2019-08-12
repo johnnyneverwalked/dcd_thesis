@@ -36,7 +36,7 @@ This section will be updated with all the dcd algorithms that exist in the proje
         * `step_communities`: A list containing all the communities of each `snapshot` in chronological order.
         * `similarity` (default: `0.5`): A float in [0,1] defining the threshold for the similarity threshold for community matching.
 
-#### Temporal Trade-off (Partition update by Global optimization)
+#### Temporal Trade-off (Partition update by Global optimization / Set of rules)
 
 * Aynaud and Guillaume et al. 2010:
     * Generates a list of partitions over a timeline of static graphs (snapshots), using the partition at step t-1 to seed the partition at step t.
@@ -44,3 +44,11 @@ This section will be updated with all the dcd algorithms that exist in the proje
         * `snapshots`: A list containing all of the `snapshot` graphs in chronological order.
         * `randomise_constraint` (default: `0.2`): A float in [0,1] indicating the percentage of nodes in partition at step t-1 to be moved to their own community while seeding partition at step t.
         (`0` runs the stable version of the louvain algorithm while `1` runs the standard louvain algorithm)
+
+* Rossetti et al. 2017:
+   * Generates a list of dics, each one containing all the formed communities at the time of observation.
+   * Arguments:
+      * `stream`: A list of edges in the format of [node1, node2, weight, timestamp], preferably ordered by timestamp.
+      * `ttl`: An integer defining after how much time in days an edge is removed from the graph (time to live).
+      * `observe_after` (default: `1`): An integer defining the interval in days after which the communities are observed.
+      * `network` (default: `None`): An instance of the `Network` class to be used as the starting network.
