@@ -1,7 +1,10 @@
 from algorithms.takaffoli import takaffoli
 from algorithms.greene import greene
 from algorithms.louvain_modified import louvain_modified
+from algorithms.tiles import tiles
 from snapshot import Snapshot
+from igraph import *
+import datetime
 
 
 snapshots = []
@@ -50,3 +53,23 @@ for p in louvainSet:
     print(p.summary())
 print("----LOUVAIN-MOD COMMUNITIES----")
 
+# TILES execution
+
+stream = []
+with open('enron2001.txt', 'r') as enron:
+    for line in enron:
+        tokens = line.split(" ")
+        stream.append(tokens)
+
+tilesSet = tiles(stream, 2)
+for tile in tilesSet.values():
+    print(len(tile), tile)
+print("----TILES COMMUNITIES---")
+
+# teeeest
+# g = Graph()
+# g.add_vertices(["1", "2", "3", "4"])
+# g.vs["list"] = [[1, 2], [3, 4], [5, 6], [7, 8]]
+# g.add_edges([("1", "2"), ("3", "4")])
+# s = g.subgraph([0, 1])
+# print(g.subgraph([0, 1]).clusters()[0])
