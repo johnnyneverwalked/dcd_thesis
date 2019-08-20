@@ -34,7 +34,7 @@ This section will be updated with all the dcd algorithms that exist in the proje
     * Generates a list of all dynamic communities over a timeline of static graphs (snapshots).
     * Arguments:
         * `step_communities`: A list containing all the communities of each `snapshot` in chronological order.
-        * `similarity` (default: `0.5`): A float in [0,1] defining the threshold for the similarity threshold for community matching.
+        * `similarity` (default: `0.5`): A float in [0,1] defining the similarity threshold for community matching.
 
 #### Temporal Trade-off (Partition update by Global optimization / Set of rules)
 
@@ -46,7 +46,7 @@ This section will be updated with all the dcd algorithms that exist in the proje
         (`0` runs the stable version of the louvain algorithm while `1` runs the standard louvain algorithm)
 
 * Rossetti et al. 2017:
-   * Generates a list of dics, each one containing all the formed communities at the time of observation.
+   * Generates a list of dicts, each one containing all the formed communities at the time of observation.
    * Arguments:
       * `stream`: A list of edges in the format of [node1, node2, weight, timestamp], preferably ordered by timestamp.
       * `ttl`: An integer defining after how much time in days an edge is removed from the graph (time to live).

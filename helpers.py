@@ -1,3 +1,5 @@
+from igraph import Graph
+
 
 def jaccard(comm1, comm2):
     intersection = len(list(set(comm1).intersection(comm2)))
@@ -29,3 +31,24 @@ def intersect_many(lists):
         result.intersection(item)
     return result
 
+
+# builds the a sum_graph from given snapshots and saves it to a pickle file
+def build_sum_graph(snapshots, weight="interaction", fname="sumGraph.pkl", combine_edges=True):
+    sum_graph = Graph()
+    for idx, snapshot in enumerate(snapshots):
+        if idx == 0:
+            sum_graph = snapshot.get_graph().copy()
+            sum_graph.es()[weight] = sum_graph.es()[weight]
+            continue
+        sum_graph.add_vertices(list(set(snapshot.get_graph().vs()["name"]).difference(set(sum_graph.vs()["name"]))))
+        sum_graph.add_edges([
+            (snapshot.get_graph().vs.find(e.tuple[0])["name"],
+             snapshot.get_graph().vs.find(e.tuple[1])["name"])
+            for e in snapshot.get_graph().es()
+        ])
+
+        sum_graph.es(lambda e: e[weight] is None)[weight] = snapshot.get_graph().es()[weight]
+
+    if combine_edges:
+        sum_graph.simplify(combine_edges={weight: sum})
+    sum_graph.write_pickle(fname=fname)

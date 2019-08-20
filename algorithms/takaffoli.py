@@ -31,8 +31,8 @@ def takaffoli(step_communities, similarity=0.5):
                         weight = helpers.community_sim(community["community"], prev["community"], similarity)
                         if weight > 0:
                             matched = True
-                            bipartite["vs"].extend(["p"+str(p_idx), "c"+str(c_idx)])
-                            bipartite["es"].append(("p"+str(p_idx), "c"+str(c_idx)))
+                            bipartite["vs"].extend(["p" + str(p_idx), "c" + str(c_idx)])
+                            bipartite["es"].append(("p" + str(p_idx), "c" + str(c_idx)))
                             bipartite["ws"].append(weight)
 
                     if not matched:
@@ -64,6 +64,7 @@ def takaffoli(step_communities, similarity=0.5):
                             # check if a community was already matched with this dc
                             if dc.get_front()[1] != t:
                                 dc.add_community(community["community"], t)
+                                step_communities[t][community["idx"]]["dc"] = prev_comm["dc"]
                             else:
                                 not_matched.append(community)
 
