@@ -24,7 +24,7 @@ class Snapshot:
         if no_zero_degree:
             self._graph.delete_vertices(self._graph.vs(_degree=0))
         self._graph.es()["interaction"] = 1
-        self._graph.simplify(combine_edges=sum)
+        # self._graph.simplify(combine_edges=sum)
 
     def get_graph(self):
         return self._graph

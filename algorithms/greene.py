@@ -17,27 +17,27 @@ def greene(step_communities, similarity=0.5, death=3):
 
         # match communities to fronts
         for d_idx, d in enumerate(dynamic):
-            if not d.is_dead():
+            if d.is_dead() is None:
 
                 for c in step:
-                    if helpers.jaccard(d.get_front()[0], c) > similarity:
-                        if d.get_front()[1] < i+1:  # update the front
-                            d.add_community(c, i+1)
-                            d.observed()
+                    if helpers.jaccard(dynamic[d_idx].get_front()[0], c) > similarity:
+                        if dynamic[d_idx].get_front()[1] < i+1:  # update the front
+                            dynamic[d_idx].add_community(c, i+1)
                         else:  # create a split community
-                            split = DynamicCommunity(c, i+1, d.get_timeline())
+                            split = DynamicCommunity(c, i+1, dynamic[d_idx].get_timeline())
                             split.define_split(d_idx, i+1)
                             to_add.append(split)
-                            print("split")
+                        dynamic[d_idx].observed()
 
-                if d.get_front()[1] < i+1 and d.unobserved() > death:  # kill inactive communities
-                    d.kill()
+                # kill inactive communities
+                if dynamic[d_idx].get_front()[1] < i+1 and dynamic[d_idx].unobserved() > death:
+                    dynamic[d_idx].kill(i+1)
 
         # create dynamic communities for unmatched communities
         for c in step:
             matched = False
             for d in dynamic:
-                if not d.is_dead() and helpers.jaccard(d.get_front()[0], c) == 1:
+                if d.is_dead() is None and helpers.jaccard(d.get_front()[0], c) == 1:
                     matched = True
                     break
             if not matched:

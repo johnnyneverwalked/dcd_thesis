@@ -76,7 +76,7 @@ def takaffoli(step_communities, similarity=0.5):
                         step_communities[t][community["idx"]]["dc"] = len(dynamic) - 1
 
                 # set not matched communities as the remaining
-                elif len(not_matched) != 0:
+                elif len(not_matched):
                     remaining_in_step = not_matched.copy()
                 else:
                     break

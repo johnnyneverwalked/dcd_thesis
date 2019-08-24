@@ -1,5 +1,5 @@
 import louvain
-from igraph import Clustering
+from igraph import VertexClustering
 from random import sample
 
 '''Dynamic Community Detection algorithm based on Aynaud-Guillaume et al 2010'''
@@ -39,7 +39,7 @@ def louvain_modified(snapshots, randomise_constraint=0.02):
 # returns a partition of graph1 based on a partition of graph2 and a constraint parameter
 def init_clusters(graph1, graph2, partition, rand_percentage=0.0):
     if rand_percentage >= 1 or len(partition) == 0:
-        return Clustering(list(range(len(graph1.vs))))
+        return VertexClustering(graph1, list(range(len(graph1.vs))))
 
     for idx, cluster in enumerate(partition):
         if partition.size(idx) > 1:
@@ -58,4 +58,4 @@ def init_clusters(graph1, graph2, partition, rand_percentage=0.0):
         for v in sample(range(0, len(vertices)), random_vertices):
             vertices[v]["cluster_seed"] = cluster_length
             cluster_length += 1
-    return Clustering(graph1.vs["cluster_seed"])
+    return VertexClustering.FromAttribute(graph1, attribute="cluster_seed")
