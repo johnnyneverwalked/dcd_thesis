@@ -52,3 +52,18 @@ This section will be updated with all the dcd algorithms that exist in the proje
       * `ttl`: An integer defining after how much time in days an edge is removed from the graph (time to live).
       * `observe_after` (default: `1`): An integer defining the interval in days after which the communities are observed.
       * `network` (default: `None`): An instance of the `Network` class to be used as the starting network.
+
+#### Cross-Time Communities Discovery (Fixed Memberships, fixed properties)
+
+* Aynaud and Guillaume et al. 2011:
+    * sum method:
+        * Generates a partition of the graph union over a set of snapshots and returns its modularity 
+        (reads the sum_graph from a file, so use the `build_sum_graph` helper method to build and save your graph to a pickle).
+        * Arguments:
+            * `fname`: The name of the pickle file that contains the graph.
+            * `weight` (default: `"interaction"`): The edge weight used by `build_sum_graph` to simplify the graph 
+    * average method:
+        * Finds the average modularity of a set of consecutive snapshots of a graph
+        * Arguments:
+            * `snapshots`: A list containing all of the `snapshot` graphs in chronological order.
+            * `weights` (default: `{}`): A dict containing the index of each snapshot as the key and the weight of the snapshot as the value.
