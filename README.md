@@ -45,7 +45,7 @@ This section will be updated with all the dcd algorithms that exist in the proje
         * `randomise_constraint` (default: `0.2`): A float in [0,1] indicating the percentage of nodes in partition at step t-1 to be moved to their own community while seeding partition at step t.
         (`0` runs the stable version of the louvain algorithm while `1` runs the standard louvain algorithm)
 
-* Rossetti et al. 2017:
+* Rossetti et al. 2017: ( ! The original TILES was used for the experiments, you can find it at https://github.com/GiulioRossetti/TILES)
    * Generates a list of dicts, each one containing all the formed communities at the time of observation.
    * Arguments:
       * `stream`: A list of edges in the format of [node1, node2, weight, timestamp], preferably ordered by timestamp.
