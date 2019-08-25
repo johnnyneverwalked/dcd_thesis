@@ -7,7 +7,6 @@ from algorithms.multistep import ms_sum, ms_avg
 from helpers import build_sum_graph
 from snapshot import Snapshot
 import louvain
-import matplotlib.pyplot as plt
 
 snapshots = []
 communities = []
