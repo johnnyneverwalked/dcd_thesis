@@ -5,7 +5,8 @@
 ### General
 
 The project uses the `igraph` library for graph calculations, plotting and static community detection algorithms.
-Calculations are mainly done on the Enron email data set (usually a yearly partition of it).
+Calculations are mainly done on the Enron email data set (usually a yearly partition of it). 
+The thesis paper can be found here (written in greek): http://ikee.lib.auth.gr/record/308606/
 
 ### Installation
 
